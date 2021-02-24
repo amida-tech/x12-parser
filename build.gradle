@@ -70,13 +70,13 @@ ossIndexAudit {
     printBanner = false
 
     // only set proxy if running outside of Github Actions
-    if (!System.getenv().GITHUB_ACTIONS) {
+    /*if (!System.getenv().GITHUB_ACTIONS) {
         proxyConfiguration {
             protocol = 'http'
-            host = 'webproxy-btp.imsweb.com'
+            host = 'proxy-host'
             port = 8080
         }
-    }
+    }*/
 }
 check.dependsOn 'ossIndexAudit'
 

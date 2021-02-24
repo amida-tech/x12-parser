@@ -35,21 +35,34 @@ public class X12ReaderTest {
     @Test
     public void testConstructors() throws IOException {
         URL url = this.getClass().getResource("/837_5010/x12_valid.txt");
+        /*URL url834 = this.getClass().getResource("/834_Versions/file834.txt");*/
 
         X12Reader fromFile = new X12Reader(FileType.ANSI837_5010_X222, new File(url.getFile()));
         X12Reader fromFileUtf8 = new X12Reader(FileType.ANSI837_5010_X222, new File(url.getFile()), StandardCharsets.UTF_8);
         X12Reader fromInputStream = new X12Reader(FileType.ANSI837_5010_X222, new FileInputStream(url.getFile()));
         X12Reader fromInputStreamUtf8 = new X12Reader(FileType.ANSI837_5010_X222, new FileInputStream(url.getFile()), StandardCharsets.UTF_8);
         X12Reader fromReaderUtf8 = new X12Reader(FileType.ANSI837_5010_X222, new BufferedReader(new InputStreamReader(new FileInputStream(url.getFile()), StandardCharsets.UTF_8)));
+        
+        /*X12Reader fromFile834 = new X12Reader(FileType.ANSI834_5010_X220, new File(url834.getFile()));
+        X12Reader fromFileUtf8834 = new X12Reader(FileType.ANSI834_5010_X220, new File(url834.getFile()), StandardCharsets.UTF_8);
+        X12Reader fromInputStream834 = new X12Reader(FileType.ANSI834_5010_X220, new FileInputStream(url834.getFile()));
+        X12Reader fromInputStreamUtf8834 = new X12Reader(FileType.ANSI834_5010_X220, new FileInputStream(url834.getFile()), StandardCharsets.UTF_8);
+        X12Reader fromReaderUtf8834 = new X12Reader(FileType.ANSI834_5010_X220, new BufferedReader(new InputStreamReader(new FileInputStream(url834.getFile()), StandardCharsets.UTF_8)));
+        */
 
         assertEquals(fromFile.getLoops().get(0).toString(), fromInputStream.getLoops().get(0).toString());
         assertEquals(fromFileUtf8.getLoops().get(0).toString(), fromInputStreamUtf8.getLoops().get(0).toString());
         assertEquals(fromFileUtf8.getLoops().get(0).toString(), fromReaderUtf8.getLoops().get(0).toString());
+
+        /*assertEquals(fromFile834.getLoops().get(0).toString(), fromInputStream834.getLoops().get(0).toString());
+        assertEquals(fromFileUtf8834.getLoops().get(0).toString(), fromInputStreamUtf8834.getLoops().get(0).toString());
+        assertEquals(fromFileUtf8834.getLoops().get(0).toString(), fromReaderUtf8834.getLoops().get(0).toString());*/
     }
 
     @Test
     public void testMultipleGSLoops() throws Exception {
         URL url = this.getClass().getResource("/837_5010/x12_multiple_gs.txt");
+        
         X12Reader reader = new X12Reader(FileType.ANSI837_5010_X222, new File(url.getFile()));
         validateMultipleGSLoops(reader.getLoops().get(0));
     }
