@@ -80,8 +80,8 @@ public class X12Reader {
         ANSI270_4010_X092("mapping/270.4010.X092.A1.xml"),
         ANSI271_4010_X092("mapping/271.4010.X092.A1.xml"),
         ANSI834_4010_X095("mapping/834.4010.X095.A1.xml"),
-        ANSI834_5010_X220("mapping/834.5010.X220.A1.xml"),
-        ANSI834_5010_X220v2("mapping/834.5010.X220.A1.v2.xml");
+        ANSI834_5010_X220("mapping/834.5010.X220.A1.xml");
+        //ANSI834_5010_X220v2("mapping/834.5010.X220.A1.v2.xml");
 
         private String _mapping;
 
@@ -127,7 +127,7 @@ public class X12Reader {
         _TYPES.put(FileType.ANSI271_4010_X092, _X270_271_092_ANSI_VERSION);
         _TYPES.put(FileType.ANSI834_4010_X095, _X834_ANSI_VERSION);
         _TYPES.put(FileType.ANSI834_5010_X220, _X834_ANSI_VERSION2);
-        _TYPES.put(FileType.ANSI834_5010_X220v2, _X834_ANSI_VERSION2);
+        //_TYPES.put(FileType.ANSI834_5010_X220v2, _X834_ANSI_VERSION2);
     }
 
     /**
@@ -145,8 +145,6 @@ public class X12Reader {
      * Constructs an X12Reader using a File
      * @param type the type of x12 file
      * @param file a File object representing the input file
-     * @param charset character encoding
-     * @throws IOException if there was an error reading the input file
      */
     public X12Reader(FileType type, File file, Charset charset) throws IOException {
         this._type = type;
@@ -157,8 +155,8 @@ public class X12Reader {
      * Constructs an X12Reader using an InputStream with default character encoding
      * @param type the type of x12 file
      * @param input an InputStream to an input file
-     * @throws IOException if there was an error reading the input file
      */
+    
     public X12Reader(FileType type, InputStream input) throws IOException {
         this._type = type;
         parse(new BufferedReader(new InputStreamReader(input, Charset.defaultCharset())));
