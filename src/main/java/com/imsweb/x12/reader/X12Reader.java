@@ -487,12 +487,12 @@ public class X12Reader {
         else {
             // find the parent loop and add the new loop we are storing to that.
             Loop parentLoop = findParentLoop(currentLoopConfig, lastLoopStored);
-
+            
             // if the parent loop was not found above - it could be that the parent loop is a segmentless loop
             // need to confirm that and add the segmentless loop and then add the current loop to that
             if (parentLoop == null) {
                 LoopConfig parentLoopInfo = null;
-
+                System.out.print(currentLoopConfig.getLoopId());
                 String parentLoopId = currentLoopConfig.getParentLoop();
                 for (LoopConfig lc : _config) {
                     if (lc.getLoopId() != null && lc.getLoopId().equals(parentLoopId)) {
